@@ -1,0 +1,11 @@
+<nav>
+    <ul>
+         <li><a routerLink="/home">Home</a></li>
+         <li *ngIf="subAdmin==true"><a routerLink="/details">Details</a></li>
+         <li *ngIf="subAdmin"><a routerLink="/purchase">Accounts</a></li>
+         <li><a routerLink="/orders">Orders</a></li>
+         
+         <li class="logout"><a href="#">Logout</a></li>
+
+       </ul>
+   </nav> 

@@ -1,0 +1,109 @@
+<app-header></app-header>
+
+
+
+<h1>LIST OF CUSTOMERS</h1>
+
+<div class="container">
+  <table >
+    <thead>
+      <tr>
+        <th> ID </th>
+        <th> UserName</th>
+        <th> Items</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let items of object">
+        <th>{{items.id?? 'N/a'}} </th>
+        <td> {{items.userName?? 'N/a'}}</td>
+        <td> <button class="btn center" (click)="open(content,contents,items.id)" >View cart</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body ">
+    <form>
+      <div class="mb-3" *ngFor="let items of object1">
+        <h5>ID: {{items.id}}</h5>
+        <h5>Name: {{items.userName}}</h5>
+        <table class="table pt-5">
+          <thead class="table table-dark">
+            <tr>
+              <th scope="col">CartId</th>
+              <th scope="col">Status</th>
+              <th scope="col">ProductName</th>
+              <th scope="col">Price</th>
+              <th scope="col">imgsrc</th>
+              <th scope="col">-</th>
+              <th scope="col">-</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr *ngFor="let items1 of items.cart">
+              <th scope="row">{{items1.id}}</th>
+              <td>{{items1.status}}</td>
+              <td>{{items1.product.productName}}</td>
+              <td>{{items1.product.price}}</td>
+              <td class="w-20">
+                <img src={{items1.product.imgsrc}} class="img-fluid img-thumbnail" alt="Sheep">
+            </td>
+            <td>
+              <p><button class="btn center" (click)="changeToCart(items.id,items1.id,'APPROVED')" >ApproveItem</button></p>
+            </td> 
+            <td>
+              <p><button class="btn center" (click)="changeToCart(items.id,items1.id,'DISCARDED')" >DiscardItems</button></p>
+            </td> 
+          </tr>
+         
+          </tbody>
+          <tbody>
+          
+          </tbody>
+        </table>
+       
+      </div>
+    </form>
+  </div>
+</div>
+</ng-template>
+
+<ng-template #contents let-modal>
+  <div class="modal-content1">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+  </div>
+  <div>
+    <h4>cart is empty</h4>
+  </div>
+</ng-template>
+
+
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+
+
+
+
+
+
+
+
+
+
+  

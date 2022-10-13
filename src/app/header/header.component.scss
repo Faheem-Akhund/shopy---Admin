@@ -1,0 +1,26 @@
+ul{
+  display:flex;
+}
+.logout{
+  margin-left:auto;
+}
+li{
+  padding:1rem;
+}
+
+/* only for visual purpose*/
+nav{
+  background:#c7490e;
+}
+ul{
+   list-style:none;
+}
+li:hover{
+  background:#cb80b5;
+  transition: all ease 0.3s;
+  cursor:pointer;
+}
+a{
+   text-decoration:none;
+  color:#fff;
+}

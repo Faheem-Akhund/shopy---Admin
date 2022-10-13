@@ -1,0 +1,85 @@
+<app-header> </app-header>
+
+
+  
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="spacetable">
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th class="thtop"scope="col">OrderId</th>
+              <th class="thtop" scope="col">OrderStatus</th>
+              <th class="thtop"scope="col">Provided Address</th>
+              <th class="thtop"scope="col">Customer</th>
+              <th class="thtop"scope="col">Ship Order</th>
+            </tr>
+          </thead>
+          <!-- <tbody *ngFor="let items of ibftrequests">
+            <tr>
+
+              <th scope="row">{{items.orderId}}</th>
+              <td>{{items.orderStatus}}</td>          
+              <td>{{items.addressProvided}}</td> 
+              <td>{{items.userName}}</td>  
+              <td> <button *ngIf="items.orderStatus=='Ready to Ship'" class="btn btn-secondary" (click)="shipOrder(items.purchaseId,6)">SHIP</button> 
+               <button *ngIf="items.orderStatus=='Parcel Is Shipped'" class="btn btn-secondary" (click)="shipOrder(items.purchaseId,7)">Received WARE HOUSE</button></td>  
+                        
+               
+            </tr>
+
+          </tbody> -->
+
+
+
+
+          <ng-container *ngIf="auth.checkSubAdmin()">
+
+          
+            <tbody *ngFor="let items of ibftrequests">
+              <tr *ngIf="items.orderStatus=='Parcel have Reached WAREHOUSE'">
+                <th scope="row">{{items.orderId}}</th>
+                <td>{{items.orderStatus}}</td>          
+                <td>{{items.addressProvided}}</td> 
+                <td>{{items.userName}}</td>  
+                <td> <button *ngIf="items.orderStatus=='Parcel have Reached WAREHOUSE'" class="btn btn-secondary" (click)="shipOrder(items.purchaseId,8)">Finish Order</button> </td>
+                          
+                 
+              </tr>
+  
+            </tbody>
+          </ng-container>
+  
+  
+          <ng-container *ngIf="auth.checkSubAdmin()==false">
+  
+            
+            <tbody *ngFor="let items of ibftrequests">
+              <tr >
+                <th scope="row">{{items.orderId}}</th>
+                <td>{{items.orderStatus}}</td>          
+                <td>{{items.addressProvided}}</td> 
+                <td>{{items.userName}}</td>  
+                <td> <button *ngIf="items.orderStatus=='Ready to Ship'" class="btn btn-secondary" (click)="shipOrder(items.purchaseId,6)">SHIP</button> 
+                  <button *ngIf="items.orderStatus=='Parcel Is Shipped'" class="btn btn-secondary" (click)="shipOrder(items.purchaseId,7)">Received WARE HOUSE</button></td>  
+                            
+                  
+              </tr>
+  
+            </tbody>
+          </ng-container>
+
+
+
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+

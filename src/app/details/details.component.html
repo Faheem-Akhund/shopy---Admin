@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body ">
+      <form #loginForm="ngForm">
+        <label for="fname">ProductName</label>
+        <input type="text" name="uname" class="form-control" [(ngModel)]="uploadObject1.productName" required/>
+        <label for="lname">Price</label>
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="pword" class="form-control" [(ngModel)]="uploadObject1.price" required>
+       
+
+        ADD NEW Category Type: <input type="checkbox" id="myCheck" (click)="disable()">
+
+        <div *ngIf="newCategory==true" class="pt-3">
+          <label for="lname">cateogryType :</label>
+          <input type="text " class="form-control" [(ngModel)]="uploadObject1.category.categoryType" name="categoryType" required >
+        </div>
+
+        <div *ngIf="newCategory==false"  class="pt-3">
+        <label for="lname">cateogryType :</label>
+        <select id="cars" [(ngModel)]="uploadObject1.category.categoryType" name="categoryType" >
+          <option required *ngFor="let category of categories" value="{{category.categoryType}}" >{{category.categoryType}}</option>
+        </select>
+        </div>
+        <!-- <br><br> -->
+        <label for="lname" class="pt-3">image upload</label>
+        <!-- <img [src]="'data:image/png;base64,'+uploadObject1.imgsrc" class="file"> -->
+        <input class="p-3" type="file" id="myFile" name="filename" [(ngModel)]="uploadObject1.imgsrc" required>
+        <!-- <pre>{{uploadObject1|json}}</pre> -->
+        <button  [disabled]="loginForm.form.invalid" class="btn btn-primary bts" (click)="upload(SuccessModal,FailedModal)">ADD PRODUCT</button>
+      </form>
+    </div>
+  </div>
+
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">ADD PRODUCTS</button>  
+  
+
+
+
+
+
+<ng-template class="successmodal" #SuccessModal>
+  <div class="box"> 
+    <div class="success alert">
+      <div class="alert-body">
+        Success !
+      </div>
+    </div>
+    </div>
+</ng-template>
+
+
+
+<ng-template class="successmodal" #FailedModal>
+  <div class="box"> 
+    <div class="error alert">
+      <div class="alert-body">
+        {{errorType}} !
+      </div>
+    </div>
+    </div>
+</ng-template>
+
+
+<!-- <div class="box"> 
+  <div class="success alert">
+    <div class="alert-body">
+      Success !
+    </div>
+  </div>
+    <div class="error alert">
+      <div class="alert-body">
+        Error !
+      </div>
+  </div>
+</div> -->
